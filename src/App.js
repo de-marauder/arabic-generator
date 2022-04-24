@@ -1,22 +1,53 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import {useLocation} from 'react-router'
 import './App.css';
 
 function App() {
+
+  
+  // const location = useSearchParams()
+  const location = useLocation()
+  const search = new URLSearchParams(location.search).get('romans')
+  console.log(location)
+  console.log(search)
+  
+  const [roman, setRoman] = useState(search)
+  const [arabic, setArabic] = useState(0)
+
+  const romanConverter = (string) => {
+    const roman = {
+      M: 1000,
+      D: 500,
+      C: 100,
+      L: 50,
+      X: 10,
+      V: 5,
+      I: 1
+    }
+    const res = [...string.toUpperCase()].reduce((curr, prev, id, arr) =>
+      prev > roman[arr[id]] ? curr -= roman[arr[id]]
+        : curr += roman[arr[id]]
+      , 0)
+    // console.log(res)
+    return res
+  }
+
+  const convert = (e) => {
+    e.preventDefault()
+    
+    setArabic(romanConverter(roman))
+  }
+
+  useEffect(()=>{
+    setArabic(romanConverter(search))
+  }, [search])
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>{arabic}</h1>
+        <input name='roman' type='text' value={roman} onChange={(e)=>setRoman(e.target.value)} />
+        <input name="convert" type='submit' value='CONVERT' onClick={(e)=>{convert(e)}} />
       </header>
     </div>
   );
