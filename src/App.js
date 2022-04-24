@@ -8,10 +8,8 @@ function App() {
   // const location = useSearchParams()
   const location = useLocation()
   const search = new URLSearchParams(location.search).get('romans')
-  console.log(location)
-  console.log(search)
   
-  const [roman, setRoman] = useState(search)
+  const [roman, setRoman] = useState(search || '')
   const [arabic, setArabic] = useState(0)
 
   const romanConverter = (string) => {
@@ -39,9 +37,9 @@ function App() {
   }
 
   useEffect(()=>{
-    setArabic(romanConverter(search))
+    search && setArabic(romanConverter(search))
   }, [search])
-  
+
   return (
     <div className="App">
       <header className="App-header">

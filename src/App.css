@@ -15,14 +15,15 @@
 
 input[type="text"] {
   background-color: inherit;
-  padding: 1em;
-  margin: 1em auto 3em;
+  font-size: 1.2em;
+  padding: 0.5em;
+  margin: 1em auto 2em;
   text-align: center;
   color: white;
   border: none;
   border-bottom: 2px solid cyan;
 }
+input[type="text"]:focus {
+  outline: none;
+}
 
-/* input[type="submit"] {
-
-} */
