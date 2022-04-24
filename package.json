@@ -1,7 +1,7 @@
 {
   "name": "roman-to-arabic",
   "version": "0.1.0",
-  "homepage": ".",
+  "homepage": "https://de-marauder.github.io/arabic-generator/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
